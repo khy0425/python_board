@@ -1,21 +1,7 @@
 from django.shortcuts import render
-from .models import Fcuser
-# Create your views here.
+from .models import Board
 
 
-def register(request):
-    if request.method == 'GET':
-        return render(request, 'register.html')
-    elif request.method == 'POST':
-        username = request.POST('username')
-        password = request.POST('password')
-        re_password = request.POST('re_password')
-
-        fcuser = Fcuser(
-            username=username,
-            password=password
-        )
-
-        fcuser.save()
-
-        return render(request, 'register.html')
+def board_list(request):
+    boards = Board.objects.all().order_by('-id')
+    return render(request, 'board_list.html', {'boards': boards})
