@@ -31,8 +31,8 @@ def board_write(request):
             board.save()
 
             return redirect('/board/list/')
-        else:
-            form = BoardForm()
+    else:
+        form = BoardForm()
     return render(request, 'board_write.html', {'form': form})
 
 
